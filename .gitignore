@@ -6,8 +6,8 @@ __pycache__/
 # C extensions
 *.so
 .DS_Store
-data/raw
-data/processed
+data/raw/
+data/processed/
 # Distribution / packaging
 .Python
 build/

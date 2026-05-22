@@ -60,10 +60,14 @@ $$
 ## Setup
 
 ```bash
+git clone https://github.com/IoannisDev/NYC-Taxi-Duration.git
+cd NYC-Taxi-Duration
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
+
+> **Dataset:** Download [NYC Taxi Trip Duration](https://www.kaggle.com/datasets/yasserh/nyc-taxi-trip-duration) from Kaggle and place the CSV at `data/raw/NYC.csv` before running the pipeline.
 
 ## Usage
 

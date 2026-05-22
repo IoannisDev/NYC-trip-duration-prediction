@@ -7,7 +7,8 @@ __pycache__/
 *.so
 .DS_Store
 data/raw/
-data/processed/
+data/processed/*
+!data/processed/boundary.geojson
 data/interim/
 # Distribution / packaging
 .Python

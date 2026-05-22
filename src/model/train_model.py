@@ -7,10 +7,15 @@ from sklearn.metrics import r2_score
 import joblib
 import os
 import sys
+import yaml
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-TRAIN_DATA_PATH = os.path.join(BASE_DIR, "data", "processed", "clean_train.csv")
-MODEL_OUTPUT_PATH = os.path.join(BASE_DIR, "models", "hist_model.pkl")
+
+with open(os.path.join(BASE_DIR, "config.yml"), "r") as f:
+    _config = yaml.safe_load(f)
+
+TRAIN_DATA_PATH   = os.path.join(BASE_DIR, _config["data"]["processed_data_path"])
+MODEL_OUTPUT_PATH = os.path.join(BASE_DIR, _config["model"]["output_path"])
 
 HIST_PARAM = {'learning_rate': 0.20822254137715343,
                'l2_regularization': 1.5234018422544593,
@@ -23,7 +28,7 @@ def load_data(path) -> DataFrame:
     return df
 
 def prepare_xy(df: DataFrame) -> tuple:
-    X = df.drop(['trip_duration', 'id', 'pickup_datetime', 'index_left'], axis=1)
+    X = df.drop(['trip_duration', 'id', 'pickup_datetime', 'index_left'],errors='ignore', axis=1)
     y = df['trip_duration']
     categoricals = X.select_dtypes(include=['object', 'str']).columns.tolist()
     X[categoricals] = X[categoricals].astype('category')
